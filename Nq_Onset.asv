@@ -1,0 +1,10 @@
+% search for the onset of the nonquantal response - used for the averaged
+% data (avg_array). start: search start; en: search end; step-length:
+% 10pt; move 5 pt each time; th:threshold: x times the std; baseline: 
+function nq_on = Nq_Onset(avg_array, start, en, step-length, th, baseline)
+    % avg_array is 50000x1 double;
+    bmean = mean(avg_array(10580:10780)); % baseline mean, 20ms
+    bstd = std(avg_array(10580:10780))/sqrt(10); % baseline std of mean of 10 pts
+    th = bmean - 3*bstd;
+    for i = start:en
+        wd = mean
