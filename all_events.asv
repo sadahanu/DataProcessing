@@ -1,0 +1,30 @@
+%% load the event 
+filedelimiterIn = '\t';
+headerlineIn = 0;
+num = input('provide the number of files: ');
+foldername = 'E:\Data Analysis and records\nonquantal\ZY061015\axon1_8_minianalysis\';
+filename1 = 'ce_ZY061015_000'; % cell name
+filetype='.ASC';
+%cdata = zeros(1,6);
+for i = 1:num
+    fnu = input('provide the last one or two digits of the fitted data: ');
+    filenum = num2str(fnu);
+    filename = strcat(foldername,filename1, filenum, filetype);
+    A = importdata(filename, delimiterIn, headerlineIn); %read ascII;
+    % the event number and timing are readed as data array and text array
+    sz = size(A.data(),1); % the total number of events
+    %a_area = sum(A.data(:,4)); % the total area of events
+    % discompose the text area and extrac the event timing
+    eventtime = ones(sz,1);
+    for j = 1:sz
+        ets = str2num(cell2mat(A.textdata(j,2)));
+        eventtime(j) = ets(1)*1000+ets(2);
+    end
+    ti = [eventtime A.data(:,[1 4])]; % events extract from the current file
+    ti_sta = all_event(ti); % extract the statistics as all area, std_area, first event
+    if (i<2)
+        edata = ti;
+    else
+        edata = [edata;ti];
+    end
+end

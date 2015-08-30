@@ -17,8 +17,16 @@ th = 3; % over 3 times the std+mean;
 ba = 10580; % the baseline window 
 avg_array = mean(d(:,1,:),3);
 nq_onset = Nq_Onset(avg_array, nq_on, nq_onr, st, th, ba);
-%%search for the amplitude
-nq_amp = Nq_Amp(avg_array,nq_on,nq_onset,nq+off,ba)
+%%search for the amplitude, change to the mid point
+nq_amp = Nq_Amp(avg_array,nq_on,nq_onset,nq_off,ba);
+%% search for the decay time; from light offset to 5% amp
+be = 48000;
+nq_decay = Nq_Decay(avg_array, nq_off, be, st);
+% calculate the area of non-quantal response: start from onset to the 
+all_area = Nq_Area(avg_array, ba,nq_on,nq_onset,nq_off,nq_decay,st)
+%% calculate the area variation
+num = size(d,3);
+
 %% plot the trace
 offset_start = 500;
 offset_end= 1000;

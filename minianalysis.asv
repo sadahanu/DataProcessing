@@ -44,12 +44,12 @@ plot(cdata(:,2),-cdata(:,1),'o')
 title('rise vs. Amp')
 gtext(filename1)
 %% return:fitted events for
-num_event = size(cdata,1);% num_events: number of events during light stimulation
-avg_event = mean(cdata(:,1));%: the mean amplitude of EPSCs
-avg_decay = mean(cdata(:,5));%: EPSC decay;
-avg_area = mean(cdata(:,3));%: EPSC area;
-avg_rise = mean(cdata(:,2));% avg_rise: EPSC rise time;
-fit_sta = [num_event avg_event avg_decay avg_area avg_rise];
+num_events = size(cdata,1);% num_events: number of events during light stimulation
+avg_event = %: the mean amplitude of EPSCs
+% avg_decay: EPSC decay;
+% avg_area: EPSC area;
+% avg_rise: EPSC rise time;
+%[num_event avg_event avg_decay avg_area avg_rise]
 
             
         
