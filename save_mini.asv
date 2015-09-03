@@ -12,6 +12,8 @@ cellname = strcat(filename1,filenum);
 eval(strcat(cellname,'.fitevents','= cdata;'));
 eval(strcat(cellname,'.allevents', '= edata;'));
 eval(strcat(cellname,'.fit_statistics','=fit_sta;'));
-eval(strcat(cellname,'.allstatistics'))=esta;
-%save(savelocation, 'cdata','edata','fit_sta','esta')
+eval(strcat(cellname,'.allstatistics','=esta;'));
+% also save the non-quantal results
+
+save(savelocation,'-struct', eval('cellname'))
 

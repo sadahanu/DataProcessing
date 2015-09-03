@@ -3,8 +3,8 @@
 delimiterIn = '\t';
 headerlineIn = 0;
 num = input('provide the number of files: ');
-foldername = 'E:\Data Analysis and records\nonquantal\ZY061015\axon1_8_minianalysis\';
-filename1 = 'ce_ZY061015_000'; % cell name
+foldername = 'E:\Data Analysis and records\nonquantal\ZY072315\axon1_8_minianalysis\';
+filename1 = 'cE_ZY072315_000'; % cell name
 filetype='.Fit';
 %cdata = zeros(1,6);
 for i = 1:num
@@ -43,6 +43,7 @@ subplot(3,3,8)
 plot(cdata(:,2),-cdata(:,1),'o')
 title('rise vs. Amp')
 gtext(filename1)
+saveas(gcf,strcat(foldername,filename1, filenum,'.fig')); %% same the individual plot
 %% return:fitted events for
 num_event = size(cdata,1);% num_events: number of events during light stimulation
 avg_event = mean(cdata(:,1));%: the mean amplitude of EPSCs

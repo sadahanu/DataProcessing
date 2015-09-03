@@ -3,8 +3,8 @@
 delimiterIn = '\t';
 headerlineIn = 0;
 num = input('provide the number of files: ');
-foldername = 'E:\Data Analysis and records\nonquantal\ZY061015\axon1_8_minianalysis\';
-filename1 = 'ce_ZY061015_000'; % cell name
+foldername = 'E:\Data Analysis and records\nonquantal\ZY071515\axon1_8_minianalysis\';
+filename1 = 'cb_ZY070715_000'; % cell name
 filetype='.Fit';
 %cdata = zeros(1,6);
 for i = 1:num
@@ -43,13 +43,14 @@ subplot(3,3,8)
 plot(cdata(:,2),-cdata(:,1),'o')
 title('rise vs. Amp')
 gtext(filename1)
+saveas(gcf,strcat(foldername,filename1, filenum,'.fig')); %% same the individual plot
 %% return:fitted events for
-num_events = size(cdata,1);% num_events: number of events during light stimulation
-avg_event = %: the mean amplitude of EPSCs
-% avg_decay: EPSC decay;
-% avg_area: EPSC area;
-% avg_rise: EPSC rise time;
-%[num_event avg_event avg_decay avg_area avg_rise]
+num_event = size(cdata,1);% num_events: number of events during light stimulation
+avg_event = mean(cdata(:,1));%: the mean amplitude of EPSCs
+avg_decay = mean(cdata(:,5));%: EPSC decay;
+avg_area = mean(cdata(:,3));%: EPSC area;
+avg_rise = mean(cdata(:,2));% avg_rise: EPSC rise time;
+fit_sta = [num_event avg_event avg_decay avg_area avg_rise];
 
             
         

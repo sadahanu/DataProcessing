@@ -13,5 +13,7 @@ eval(strcat(cellname,'.fitevents','= cdata;'));
 eval(strcat(cellname,'.allevents', '= edata;'));
 eval(strcat(cellname,'.fit_statistics','=fit_sta;'));
 eval(strcat(cellname,'.allstatistics','=esta;'));
+% also save the non-quantal results
+eval(strcat(cellname,'.nq_statistics','=nq_sta;'));
 save(savelocation,'-struct', eval('cellname'))
 
