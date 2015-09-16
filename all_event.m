@@ -5,8 +5,8 @@
 function [a_area std_area fevent] = all_event(E,du,onset)
       sz = size(E,1); % the total number of events
       a_area = sum(E(:,3)); % the total area of events
-      std_event = zeros(10,1); %(:,1) the area of EPSCs in the area; (:,2) the first event
-      fi_event = zeros(10,1);
+      std_event = zeros(5,1); %(:,1) the area of EPSCs in the area; (:,2) the first event
+      fi_event = zeros(5,1);
       trial = 0; % the current trial to handel
       for i = 1:sz
           if(fix((E(i,1)-onset)/du)> (trial-1))
@@ -17,7 +17,7 @@ function [a_area std_area fevent] = all_event(E,du,onset)
       end
      std_area = std(std_event(find(std_event~=0)));
      fevent = mean(fi_event(find(fi_event~=0)));
-     std_event
+     std_event;
           
           
           

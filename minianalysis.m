@@ -3,8 +3,8 @@
 delimiterIn = '\t';
 headerlineIn = 0;
 num = input('provide the number of files: ');
-foldername = 'E:\Data Analysis and records\nonquantal\ZY072315\axon1_8_minianalysis\';
-filename1 = 'cE_ZY072315_000'; % cell name
+foldername = 'E:\Data Analysis and records\nonquantal\ZY060515\axon1_8_minianalysis\';
+filename1 = 'cA_ZY060515_00'; % cell name
 filetype='.Fit';
 %cdata = zeros(1,6);
 for i = 1:num

@@ -2,12 +2,14 @@
 filedelimiterIn = '\t';
 headerlineIn = 0;
 num = input('provide the number of files: ');
-foldername = 'E:\Data Analysis and records\nonquantal\ZY072315\axon1_8_minianalysis\';
-filename1 = 'cE_ZY072315_000'; % cell name
+foldername = 'E:\Data Analysis and records\nonquantal\ZY060515\axon1_8_minianalysis\';
+filename1 = 'cA_ZY060515_00'; % cell name
 filetype='.ASC';
 %cdata = zeros(1,6)
-du = 8000; % duration of each trial
-on_event = 1124.9; % can be 1078 if it is 5s duration
+%du = 8000; % duration of each trial
+%on_event = 1124.9; % can be 1078 if it is 5s duration
+du = 5000;
+on_event = 1078;
 for i = 1:num
     fnu = input('provide the last one or two digits of the fitted data: ');
     filenum = num2str(fnu);
@@ -20,7 +22,7 @@ for i = 1:num
     eventtime = ones(sz,1);
     ti_sta = zeros(1,3);
     for j = 1:sz
-        ets = str2num(cell2mat(A.textdata(j,2)))%%
+        ets = str2num(cell2mat(A.textdata(j,2)));%%
         eventtime(j) = ets(1)*1000+ets(2);
     end
     ti = [eventtime A.data(:,[1 4])]; % events extract from the current file

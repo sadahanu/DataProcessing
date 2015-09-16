@@ -1,6 +1,8 @@
 %load abf 2.0 files into matlab format
-foname = 'E:\Data Analysis and records\nonquantal\ZY072315\';
-finame = 'cE_ZY072315_0004.abf';
+foname = 'E:\Data Analysis and records\nonquantal\ZY072415\';
+%foname = 'E:\Data Analysis and records\nonquantal\ZY071715\axon1_8_minianalysis\'
+cname = 'ce_ZY072415_0008';
+finame = strcat(cname,'.abf');
 fname = strcat(foname, finame);
 d=abfload(fname);%d(:,1) currents - (Im_scaledZ); voltage - (10_Vm_Z)
 %nq_on = 32342; % only for the recordings in May/2015
@@ -13,6 +15,7 @@ d=abfload(fname);%d(:,1) currents - (Im_scaledZ); voltage - (10_Vm_Z)
 %ba = 10580; % the baseline window 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% light stimuli onset and offset parameters for 8s protocol
+%d(:,1,:)=-d(:,1,:);% for the positive events
 nq_on = 11249;
 nq_onr = 12500;
 nq_off = 21249;
@@ -45,4 +48,8 @@ offset_end= 1000;
 nq_start= nq_on-offset_start;%padding for plot purpose
 nq_end = nq_off+offset_end;%padding for plot pupose
 %plot(d(nq_start:nq_end,1,1))%plot the non-quantal responses of trial 1
+%% save for the pharmacology data
+saveloc = strcat(foname,cname,'VgluT3','.mat');
+eval(strcat(cname,'.pharmanq_statistics','=nq_sta;'));
+save(saveloc,'-struct', eval('cname'));
 
