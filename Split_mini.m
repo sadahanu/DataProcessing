@@ -3,8 +3,8 @@
 delimiterIn = '\t';
 headerlineIn = 0;
 num = input('provide the number of files: ');
-foldername = 'E:\Data Analysis and records\nonquantal\ZY092415\axon1_8_minianalysis\';
-filename1 = 'cd_ZY092415_000'; % cell name
+foldername = 'E:\Data Analysis and records\nonquantal\ZY081015\axon1_8_minianalysis\';
+filename1 = 'cB_ZY081015_000'; % cell name
 filetype='.Fit';
 %cdata = zeros(1,6);
 for i = 1:num
@@ -13,11 +13,21 @@ for i = 1:num
     filename = strcat(foldername,filename1, filenum, filetype);
     A = importdata(filename, delimiterIn, headerlineIn); %read ascII
     if (i<2)
-        cdata = A.data(:,[1 4:7 12]);
+        adata = A.data(:,[1 4:7 12]);
     else
-        cdata = [cdata;A.data(:,[1 4:7 12])];
+        adata = [adata;A.data(:,[1 4:7 12 2])];% the last colume is the timing of events
     end
 end
+% sort the adata to events within stimulation(cdata) and in control time
+% (pdata)
+% according to a data(:,7)
+du = 8000; % duration of each trial
+on_event = 1124.9; % can be 1078 if it is 5s duration
+tail = 899.525;
+%du = 5000;
+%on_event = 1078; 
+
+
 subplot(3,3,1)
 hist(-cdata(:,1)) %plot the amplitude distribution
 title('Amp: pA');

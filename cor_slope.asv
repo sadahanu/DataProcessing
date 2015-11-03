@@ -1,0 +1,4 @@
+function cor_d = cor_slope(nqonset, avgarray)
+  %% correct the avgArray use the 0-nqonset slope
+  x = 1:nqonset;
+  y = avgarray(

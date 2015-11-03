@@ -6,6 +6,9 @@
 % avg_area avg_rise]
 % save the statistics of all events: esta: 1. all _area; 2. std_area/trial;
 % 3. onset of the first events
+%foldername = 'E:\Data Analysis and records\nonquantal\ZY071715\axon1_8_minianalysis\';
+%filename1 = 'cB_ZY071715_000'; % cell name
+%filenum='6';
 savelocation = strcat(foldername,filename1,filenum,'.mat');
 %save(savelocation, '-struct', 'cdata', 'edata','fit_sta','esta')
 cellname = strcat(filename1,filenum);

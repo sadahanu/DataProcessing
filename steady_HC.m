@@ -1,22 +1,22 @@
 %load abf 2.0 files into matlab format
-foname = 'E:\Data Analysis and records\nonquantal\ZY060415\';
+foname = 'E:\Data Analysis and records\nonquantal\ZY071615\';
 %foname = 'E:\Data Analysis and records\nonquantal\ZY071715\axon1_8_minianalysis\'
-cname = 'cB_ZY060415_0008';
+cname = 'cD_ZY071615_0013';
 finame = strcat(cname,'.abf');
 fname = strcat(foname, finame);
 d=abfload(fname);%d(:,1) currents - (Im_scaledZ); voltage - (10_Vm_Z)
 %%% light stimuli onset and offset parameters for 5s protocol
-nq_on = 10780;
-nq_onr = 11000;% search end for the onset
-nq_off = 20780;
-ba = 10580; % the baseline window 
+%nq_on = 10780;
+%nq_onr = 11000;% search end for the onset
+%nq_off = 20780;
+%ba = 10580; % the baseline window 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% light stimuli onset and offset parameters for 8s protocol
-d(:,1,:)=-d(:,1,:);% for current-clamp mode
-%nq_on = 11249;
-%nq_onr = 12500;
-%nq_off = 21249;
-%ba = 11000;
+%d(:,1,:)=-d(:,1,:);% for current-clamp mode
+nq_on = 11249;
+nq_onr = 12500;
+nq_off = 21249;
+ba = 11000;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% search for the onset of the response
 st = 5; % search step 5 pt a time
@@ -37,15 +37,17 @@ for i = 1:num
     ea_amp(i)= Nq_Amp(d(:,1,i),nq_on,HC_onset,nq_off,ba);
 end
 st_ea_amp = std(ea_amp/10);
-risetime = findrise95(avg_array, nq_on, nq_onr, baseline);
+[risetime peak_amp] = findrise95(avg_array, nq_on, nq_onr, baseline);
 %VC mode
-%HC_sta = [HC_amp (HC_onset-nq_on)/10 (risetime-HC_onset)/10 HC_decay/10 st_ea_amp];
+HC_sta = [HC_amp peak_amp-baseline (HC_onset-nq_on)/10 (risetime-HC_onset)/10 HC_decay/10 st_ea_amp];
+
 % CC mode
-HC_sta = [-HC_amp (HC_onset-nq_on)/10 (risetime-HC_onset)/10 HC_decay/10 st_ea_amp -baseline];
+%HC_sta = [-HC_amp baseline-peak_amp (HC_onset-nq_on)/10 (risetime-HC_onset)/10 HC_decay/10 st_ea_amp -baseline];
 %% save the parameters
 saveloc = strcat(foname,cname,'HC','.mat');
-%eval(strcat(cname,'.steady_VCstat','=HC_sta;')); %VC mode
-eval(strcat(cname,'.steady_CCstat','=HC_sta;')); % CCmode
+eval(strcat(cname,'.steady_VCstat','=HC_sta;')); %VC mode
+
+%eval(strcat(cname,'.steady_CCstat','=HC_sta;')); % CCmode
 save(saveloc,'-struct', eval('cname'));
 
 

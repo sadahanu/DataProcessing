@@ -1,0 +1,13 @@
+foname = 'E:\Data Analysis and records\nonquantal\ZY061015\';
+%foname = 'E:\Data Analysis and records\nonquantal\ZY081015\axon1_8_minianalysis\'
+cname = 'ce_ZY061015_0007';
+finame = strcat(cname,'.abf');
+fname = strcat(foname, finame);
+d=abfload(fname);%d(:,1) currents - (Im_scaledZ); voltage - (10_Vm_Z)
+avg_array = mean(d(:,1,:),3);
+Rm_start = 12.62*50; % start point of the 10 mV jump; time gain is 50 in this case
+Rm_du = 50*50;
+Rm_bs = mean(avg_array(25:100));
+Rm_val = mean(avg_array((Rm_start+2):(126.2+260)));
+Rm_val = Rm_bs-Rm_val;
+Rm = 10*10^(-3)/Rm_val^(10^(-6));
