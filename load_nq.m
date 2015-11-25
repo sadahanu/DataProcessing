@@ -3,7 +3,7 @@
 %Vm). Correct the data trace with the slope first.
 foname = 'E:\Data Analysis and records\nonquantal\ZY092415\';
 %foname = 'E:\Data Analysis and records\nonquantal\ZY081015\axon1_8_minianalysis\'
-cname = 'cd_ZY092415_0007';
+cname = 'cd_ZY092415_0013';
 finame = strcat(cname,'.abf');
 fname = strcat(foname, finame);
 d=abfload(fname);%d(:,1) currents - (Im_scaledZ); voltage - (10_Vm_Z)

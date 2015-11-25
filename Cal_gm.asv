@@ -1,0 +1,6 @@
+% calculate the membrane condutance
+%data: data array 1x ; Vd: voltage drop; start: start of the drop; end of
+%the drop; window size
+function y = Cal_gm(data, Vd, start, end, wd)
+         y = 
+       
